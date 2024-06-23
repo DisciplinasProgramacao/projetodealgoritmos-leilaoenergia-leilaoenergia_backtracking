@@ -22,7 +22,7 @@ public class TesteProgramacaoDinamica {
         try (FileWriter writer = new FileWriter("resultadosProgramacaoDinamica.csv")) {
             // Cabeçalho para os dados de saída
             writer.append(
-                    "Tamanho DuraçãoMédia(ms) EnergiaTotaldaMelhorSolução ValorTotaldaMelhorSolução MédiadoValorTotaldasSoluções MédiadaEnergiaTotaldasSoluções\n");
+                    "Tamanho DuraçãoMédia(ms) MédiadoValorTotaldasSoluções MédiadaEnergiaTotaldasSoluções\n");
 
             for (int tamanho = tamanhoInicial; tamanho < T; tamanho += incremento) {
                 List<Long> duracoes = new ArrayList<>();
@@ -78,8 +78,8 @@ public class TesteProgramacaoDinamica {
                 System.out.println();
 
                 // Formatar a saída em CSV e escrever no arquivo
-                writer.append(String.format("%d %.2f %d %d %.2f %.2f\n",
-                        tamanho, duracaoMedia, energiaTotalMelhor, valorTotalMelhor, mediaValorTotal,
+                writer.append(String.format("%d %.2f %.2f %.2f\n",
+                        tamanho, duracaoMedia, mediaValorTotal,
                         mediaEnergiaTotal));
 
                 // Verificar se a duração média excede o limite de tempo
