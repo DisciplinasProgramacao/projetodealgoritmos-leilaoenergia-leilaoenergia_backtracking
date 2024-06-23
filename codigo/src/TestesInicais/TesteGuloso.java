@@ -16,7 +16,7 @@ public class TesteGuloso {
         int numTestes = 10;
         int energiaDisp = 1000;
         long tempoLimit = 30000; // 30 seconds in milliseconds
-        int T = 50;
+        int T = 130;
 
 
         try (FileWriter writer = new FileWriter("resultadosGuloso.csv")) {

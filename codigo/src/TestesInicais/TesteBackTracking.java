@@ -18,12 +18,13 @@ public class TesteBackTracking {
         int numTestes = 10;
         int energia = 1000;
         long limiteTempo = 30000; // 30 segundos em milissegundos
+        int T = 130;
 
         try (FileWriter writer = new FileWriter("resultadosBackTracking.csv")) {
             // Cabeçalho para os dados de saída
-            writer.append("Tamanho,DuraçãoMédia(ms),MédiaValorTotalSoluções,MédiaEnergiaTotalSoluções\n");
+            writer.append("Tamanho DuraçãoMédia(ms) MédiaValorTotalSoluções MédiaEnergiaTotalSoluções\n");
 
-            for (int tamanho = tamanhoInicial; ; tamanho += incremento) {
+            for (int tamanho = tamanhoInicial; tamanho <= 130 ; tamanho += incremento) {
                 List<Long> duracoes = new ArrayList<>();
                 List<Lance> melhorSolucaoGeral = new ArrayList<>();
                 int maxLucroGeral = 0;
