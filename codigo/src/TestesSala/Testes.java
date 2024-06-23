@@ -114,7 +114,7 @@ public class Testes {
                     DivisaoConquista divisaoConquista = new DivisaoConquista();
                     tempoIncio = System.currentTimeMillis();
 
-                    List<Lance> melhorConjunto = divisaoConquista.selecionarLances (lances, energiaInicial);
+                    List<Lance> melhorConjunto = divisaoConquista.resolver (lances, energiaInicial);
 
                     tempoFinal = System.currentTimeMillis();
                     duracao = tempoFinal - tempoIncio;

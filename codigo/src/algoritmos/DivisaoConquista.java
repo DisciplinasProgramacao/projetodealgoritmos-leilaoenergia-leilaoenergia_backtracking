@@ -6,13 +6,15 @@ import java.util.*;
 
 public class DivisaoConquista {
 
-    public static List<Lance> selecionarLances(List<Lance> lances, int energiaMaxima) {
+    public static List<Lance> resolver(List<Lance> lances, int energiaMaxima) {
         List<Lance> lancesSelecionados = new ArrayList<>();
-        selecionarLancesRecursivo(lances, 0, lances.size() - 1, energiaMaxima, lancesSelecionados);
+        divisaoConquista(lances, 0, lances.size() - 1, energiaMaxima, lancesSelecionados);
         return lancesSelecionados;
     }
 
-    private static void selecionarLancesRecursivo(List<Lance> lances, int left, int right, int energiaRestante, List<Lance> lancesSelecionados) {
+    private static void divisaoConquista(List<Lance> lances, int left, int right, int energiaRestante,
+                          List<Lance> lancesSelecionados) {
+
         if (left > right) {
             return;
         }
@@ -33,11 +35,11 @@ public class DivisaoConquista {
             energiaRestante -= lanceSelecionado.getEnergia();
 
             // Resolver os subproblemas recursivamente
-            selecionarLancesRecursivo(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
-            selecionarLancesRecursivo(lances, indiceMaximoLucro + 1, right, energiaRestante, lancesSelecionados);
+            divisaoConquista(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
+            divisaoConquista(lances, indiceMaximoLucro + 1, right, energiaRestante, lancesSelecionados);
         } else {
             // Se não couber, resolver apenas com o restante da energia disponível
-            selecionarLancesRecursivo(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
+            divisaoConquista(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
         }
     }
 
