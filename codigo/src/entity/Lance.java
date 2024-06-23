@@ -16,6 +16,18 @@ public class Lance {
         return valor;
     }
 
+    public static Long getProximoId () {
+        return proximoId;
+    }
+
+    public Long getId () {
+        return id;
+    }
+
+    public int getEnergia () {
+        return energia;
+    }
+
     @Override
     public String toString() {
         return "Bid{energia=" + energia + ", valor=" + valor + "}";

@@ -1,54 +1,45 @@
 package algoritmos;
 
 import entity.Lance;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+
+import java.util.*;
 
 public class DivisaoConquista {
 
-
-    public List<Lance> resolver(List<Lance> lances, int energiaInicial) {
-        return dividirEConquistar(lances, energiaInicial, 0);
+    public static List<Lance> selecionarLances(List<Lance> lances, int energiaMaxima) {
+        List<Lance> lancesSelecionados = new ArrayList<>();
+        selecionarLancesRecursivo(lances, 0, lances.size() - 1, energiaMaxima, lancesSelecionados);
+        return lancesSelecionados;
     }
 
-
-    /**
-     * Cada chamada recursiva cria dois ramos possíveis na árvore de recursão: um ramo onde o lance atual é incluído
-     * na solução e outro ramo onde o lance atual não é incluído. Cada nó representa uma decisão de inclusão ou não
-     * inclusão de um lance.
-     * @param lances
-     * @param energiaRestante
-     * @param inicio
-     * @return
-     */
-    private List<Lance> dividirEConquistar(List<Lance> lances, int energiaRestante, int inicio) {
-
-        if (inicio >= lances.size() || energiaRestante <= 0) {
-            return new ArrayList<>();
+    private static void selecionarLancesRecursivo(List<Lance> lances, int left, int right, int energiaRestante, List<Lance> lancesSelecionados) {
+        if (left > right) {
+            return;
         }
 
-        Lance lanceAtual = lances.get(inicio);
-
-        List<Lance> incluir = new ArrayList<>();
-        if (lanceAtual.energia <= energiaRestante) {
-            incluir.add(lanceAtual);
-            incluir.addAll(dividirEConquistar(lances, energiaRestante - lanceAtual.energia, inicio + 1));
+        // Encontrar o lance que maximiza o valor por unidade de energia
+        int indiceMaximoLucro = left;
+        for (int i = left + 1; i <= right; i++) {
+            if (lances.get(i).getValor() * lances.get(indiceMaximoLucro).getEnergia() > lances.get(indiceMaximoLucro).getValor() * lances.get(i).getEnergia()) {
+                indiceMaximoLucro = i;
+            }
         }
 
-        List<Lance> naoIncluir = dividirEConquistar(lances, energiaRestante, inicio + 1);
+        Lance lanceSelecionado = lances.get(indiceMaximoLucro);
 
-        int lucroIncluir = calcularLucro(incluir);
-        int lucroNaoIncluir = calcularLucro(naoIncluir);
+        // Se o lance cabe na energia disponível
+        if (lanceSelecionado.getEnergia() <= energiaRestante) {
+            lancesSelecionados.add(lanceSelecionado);
+            energiaRestante -= lanceSelecionado.getEnergia();
 
-        if (lucroIncluir > lucroNaoIncluir && energiaRestante >= 0) {
-            return incluir;
+            // Resolver os subproblemas recursivamente
+            selecionarLancesRecursivo(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
+            selecionarLancesRecursivo(lances, indiceMaximoLucro + 1, right, energiaRestante, lancesSelecionados);
         } else {
-            return naoIncluir;
+            // Se não couber, resolver apenas com o restante da energia disponível
+            selecionarLancesRecursivo(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
         }
     }
-
 
     public int calcularLucro(List<Lance> lances) {
         int lucro = 0;
@@ -57,6 +48,9 @@ public class DivisaoConquista {
         }
         return lucro;
     }
+
+
+
 
 }
 
