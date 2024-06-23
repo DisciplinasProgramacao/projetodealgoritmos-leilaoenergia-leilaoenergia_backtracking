@@ -1,8 +1,8 @@
 package algoritmos;
 
 public class Lance {
-    int energia;
-    int valor;
+    public int energia;
+    public int valor;
 
     public Lance(int energia, int valor) {
         this.energia = energia;
