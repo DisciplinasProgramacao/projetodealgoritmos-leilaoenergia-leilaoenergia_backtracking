@@ -1,4 +1,7 @@
+package TestesInicais;
+
 import algoritmos.Lance;
+
 
 import java.util.ArrayList;
 import java.util.List;
