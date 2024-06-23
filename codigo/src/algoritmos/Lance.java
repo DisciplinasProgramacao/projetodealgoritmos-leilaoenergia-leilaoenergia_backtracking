@@ -1,10 +1,14 @@
 package algoritmos;
 
 public class Lance {
-    int energia;
-    int valor;
+
+    private static Long proximoId = 1L;
+    public Long id;
+    public int energia;
+    public int valor;
 
     public Lance(int energia, int valor) {
+        this.id = proximoId++;
         this.energia = energia;
         this.valor = valor;
     }

@@ -1,6 +1,7 @@
 package TestesSala;
 
 import algoritmos.BackTracking;
+import algoritmos.DivisaoConquista;
 import algoritmos.Lance;
 
 import java.util.ArrayList;
@@ -11,6 +12,9 @@ public class Testes {
     public static void main(String[] args) {
 
         int energiaInicial = 8000;
+        long tempoIncio;
+        long tempoFinal;
+        long duracao;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -76,24 +80,44 @@ public class Testes {
 
         System.out.println("Escolha o Algoritmo: ");
         System.out.println("1. Backtracking");
-        System.out.println("2. Algoritmo guloso");
-        System.out.println("3. Divisão e conquista");
+        System.out.println("2. Divisão e conquista");
+        System.out.println("3. Algoritmo guloso");
         System.out.println("4. Programação dinâmica");
 
         escolha = scanner.nextInt();
+
 
         switch (escolha) {
             case 1:
                 BackTracking solucaoBack = new BackTracking();
 
-                long tempoIncio = System.currentTimeMillis();
+                tempoIncio = System.currentTimeMillis();
                 solucaoBack.resolver(lances, energiaInicial);
-                long tempoFinal = System.currentTimeMillis();
-                long duracao = tempoFinal - tempoIncio;
+                tempoFinal = System.currentTimeMillis();
+                duracao = tempoFinal - tempoIncio;
 
                 System.out.println("Tempo de execução: " + duracao);
                 System.out.println("Resposta Encontrada: " + solucaoBack.getMaiorLucro());
                 System.out.println(solucaoBack.getSolucao());
+                break;
+            case 2:
+                DivisaoConquista divisaoConquista = new DivisaoConquista ();
+
+                tempoIncio = System.currentTimeMillis();
+                List<Lance> melhorConjunto = divisaoConquista.resolver(lances, energiaInicial);
+                tempoFinal = System.currentTimeMillis();
+                duracao = tempoFinal - tempoIncio;
+
+                System.out.println("Tempo de execução: " + duracao);
+
+                System.out.println("Melhor conjunto de lances para o maior lucro possível:");
+                for (Lance lance : melhorConjunto) {
+                    System.out.println("Energia: " + lance.energia + ", Valor: " + lance.valor);
+                }
+
+                System.out.println("Lucro total: " + divisaoConquista .calcularLucro(melhorConjunto));
+                break;
+
         }
     }
 }
