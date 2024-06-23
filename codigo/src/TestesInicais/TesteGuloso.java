@@ -1,7 +1,7 @@
 package TestesInicais;
 
-import algoritmos.Lance;
 import algoritmos.Guloso;
+import entity.Lance;
 
 import java.util.ArrayList;
 import java.util.List;

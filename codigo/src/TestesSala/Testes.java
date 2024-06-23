@@ -2,7 +2,7 @@ package TestesSala;
 
 import algoritmos.BackTracking;
 import algoritmos.DivisaoConquista;
-import algoritmos.Lance;
+import entity.Lance;
 
 import java.util.ArrayList;
 import java.util.List;

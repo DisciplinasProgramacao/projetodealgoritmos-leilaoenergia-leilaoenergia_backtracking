@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import entity.Lance;
+
 public class Guloso {
     public static List<Lance> resolverPorEnergiaProValor(List<Lance> lances, int energia) {
         //Organiza os lances em ordem decrecente em relação valor/energia

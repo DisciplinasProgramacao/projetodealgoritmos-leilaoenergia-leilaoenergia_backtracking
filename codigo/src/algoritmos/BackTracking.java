@@ -3,6 +3,8 @@ package algoritmos;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.Lance;
+
 public class BackTracking {
     private int maiorLucro;
     private List<Lance> solucao;

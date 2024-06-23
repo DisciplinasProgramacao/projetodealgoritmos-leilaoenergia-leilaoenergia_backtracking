@@ -1,7 +1,7 @@
 package TestesInicais;
 
 import algoritmos.BackTracking;
-import algoritmos.Lance;
+import entity.Lance;
 
 import java.util.ArrayList;
 import java.util.List;
