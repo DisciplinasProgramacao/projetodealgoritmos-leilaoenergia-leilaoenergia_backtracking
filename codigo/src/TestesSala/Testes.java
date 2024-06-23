@@ -2,8 +2,7 @@ package TestesSala;
 
 import algoritmos.BackTracking;
 import algoritmos.DivisaoConquista;
-import algoritmos.Lance;
-
+import entity.Lance;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -115,7 +114,7 @@ public class Testes {
                     System.out.println("Id: " + lance.id + ", Energia: " + lance.energia + ", Valor: " + lance.valor);
                 }
 
-                System.out.println("Lucro total: " + divisaoConquista .calcularLucro(melhorConjunto));
+                System.out.println("Lucro total: " + divisaoConquista.calcularLucro (melhorConjunto));
                 break;
 
         }

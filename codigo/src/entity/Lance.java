@@ -1,4 +1,4 @@
-package algoritmos;
+package entity;
 
 public class Lance {
     private static Long proximoId = 1L;
