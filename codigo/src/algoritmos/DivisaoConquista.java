@@ -12,16 +12,15 @@ public class DivisaoConquista {
         return lancesSelecionados;
     }
 
-    private static void divisaoConquista(List<Lance> lances, int left, int right, int energiaRestante,
-                          List<Lance> lancesSelecionados) {
+    private static void divisaoConquista(List<Lance> lances, int esquerda, int direita, int energiaRestante, List<Lance> lancesSelecionados) {
 
-        if (left > right) {
+        if (esquerda > direita) {
             return;
         }
 
         // Encontrar o lance que maximiza o valor por unidade de energia
-        int indiceMaximoLucro = left;
-        for (int i = left + 1; i <= right; i++) {
+        int indiceMaximoLucro = esquerda;
+        for (int i = esquerda + 1; i <= direita; i++) {
             if (lances.get(i).getValor() * lances.get(indiceMaximoLucro).getEnergia() > lances.get(indiceMaximoLucro).getValor() * lances.get(i).getEnergia()) {
                 indiceMaximoLucro = i;
             }
@@ -35,11 +34,11 @@ public class DivisaoConquista {
             energiaRestante -= lanceSelecionado.getEnergia();
 
             // Resolver os subproblemas recursivamente
-            divisaoConquista(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
-            divisaoConquista(lances, indiceMaximoLucro + 1, right, energiaRestante, lancesSelecionados);
+            divisaoConquista(lances, esquerda, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
+            divisaoConquista(lances, indiceMaximoLucro + 1, direita, energiaRestante, lancesSelecionados);
         } else {
             // Se não couber, resolver apenas com o restante da energia disponível
-            divisaoConquista(lances, left, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
+            divisaoConquista(lances, esquerda, indiceMaximoLucro - 1, energiaRestante, lancesSelecionados);
         }
     }
 
