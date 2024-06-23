@@ -1,7 +1,3 @@
-import entities.Compradora;
-import entities.Lance;
-import utils.GenerateObject;
-import utils.TestGenerator;
 
 import java.util.List;
 
