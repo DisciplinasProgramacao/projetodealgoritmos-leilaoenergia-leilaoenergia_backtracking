@@ -1,6 +1,8 @@
 package algoritmos;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class DivisaoConquista {
@@ -11,6 +13,15 @@ public class DivisaoConquista {
     }
 
 
+    /**
+     * Cada chamada recursiva cria dois ramos possíveis na árvore de recursão: um ramo onde o lance atual é incluído
+     * na solução e outro ramo onde o lance atual não é incluído. Cada nó representa uma decisão de inclusão ou não
+     * inclusão de um lance.
+     * @param lances
+     * @param energiaRestante
+     * @param inicio
+     * @return
+     */
     private List<Lance> dividirEConquistar(List<Lance> lances, int energiaRestante, int inicio) {
 
         if (inicio >= lances.size() || energiaRestante <= 0) {
@@ -36,6 +47,7 @@ public class DivisaoConquista {
             return naoIncluir;
         }
     }
+
 
     public int calcularLucro(List<Lance> lances) {
         int lucro = 0;
