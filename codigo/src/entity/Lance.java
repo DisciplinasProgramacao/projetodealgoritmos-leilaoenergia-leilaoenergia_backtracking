@@ -12,6 +12,10 @@ public class Lance {
         this.valor = valor;
     }
 
+    public int getValor () {
+        return valor;
+    }
+
     @Override
     public String toString() {
         return "Bid{energia=" + energia + ", valor=" + valor + "}";

@@ -3,7 +3,6 @@ package TestesSala;
 import algoritmos.BackTracking;
 import algoritmos.DivisaoConquista;
 import entity.Lance;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -104,7 +103,7 @@ public class Testes {
                 DivisaoConquista divisaoConquista = new DivisaoConquista ();
 
                 tempoIncio = System.currentTimeMillis();
-                List<Lance> melhorConjunto = divisaoConquista.resolver(lances, energiaInicial);
+                List<Lance> melhorConjunto = divisaoConquista.resolver (lances, energiaInicial);
                 tempoFinal = System.currentTimeMillis();
                 duracao = tempoFinal - tempoIncio;
 
@@ -112,10 +111,10 @@ public class Testes {
 
                 System.out.println("Melhor conjunto de lances para o maior lucro possível:");
                 for (Lance lance : melhorConjunto) {
-                    System.out.println("Energia: " + lance.energia + ", Valor: " + lance.valor);
+                    System.out.println("Id: " + lance.id + ", Energia: " + lance.energia + ", Valor: " + lance.valor);
                 }
 
-                System.out.println("Lucro total: " + divisaoConquista .calcularLucro(melhorConjunto));
+                System.out.println("Lucro total: " + divisaoConquista.calcularLucro (melhorConjunto));
                 break;
 
         }
