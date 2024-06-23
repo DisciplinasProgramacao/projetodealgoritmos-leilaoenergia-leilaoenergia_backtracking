@@ -1,7 +1,6 @@
 package algoritmos;
 
 public class Lance {
-
     private static Long proximoId = 1L;
     public Long id;
     public int energia;
