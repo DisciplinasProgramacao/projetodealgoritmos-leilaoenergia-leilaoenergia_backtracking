@@ -6,20 +6,18 @@ import java.util.List;
 import entity.Lance;
 
 public class ProgramacaoDinamica {
-    public static int resolver(List<Lance> lances, int energia) {
-        int n = lances.size();
-        int[] lucrosMax = new int[energia + 1];
+    
+    public static class Solucao {
+        public int maiorLucro;
+        public List<Lance> lancesSelecionados;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = energia; j >= lances.get(i).energia; j--) {
-                lucrosMax[j] = Math.max(lucrosMax[j], lucrosMax[j - lances.get(i).energia] + lances.get(i).valor);
-            }
+        public Solucao(int maiorLucro, List<Lance> lancesSelecionados) {
+            this.maiorLucro = maiorLucro;
+            this.lancesSelecionados = lancesSelecionados;
         }
-
-        return lucrosMax[energia];
     }
 
-    public static List<Lance> getSolucao(List<Lance> lances, int energia) {
+    public static Solucao getSolucao(List<Lance> lances, int energia) {
         int n = lances.size();
         int[] lucrosMax = new int[energia + 1];
         int[][] escolhidos = new int[n + 1][energia + 1];
@@ -42,7 +40,7 @@ public class ProgramacaoDinamica {
             }
         }
 
-        return solucao;
+        return new Solucao(lucrosMax[energia], solucao);
     }
 
     public static void main(String[] args) {
@@ -55,12 +53,11 @@ public class ProgramacaoDinamica {
         lances.add(new Lance(900, 1110));
 
         int energia = 1000;
-        int maiorLucro = resolver(lances, energia);
-        List<Lance> solucao = getSolucao(lances, energia);
+        Solucao solucao = getSolucao(lances, energia);
 
-        System.out.println("Maior lucro: " + maiorLucro);
+        System.out.println("Maior lucro: " + solucao.maiorLucro);
         System.out.println("Solução:");
-        for (Lance lance : solucao) {
+        for (Lance lance : solucao.lancesSelecionados) {
             System.out.println(lance);
         }
     }

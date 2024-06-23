@@ -1,6 +1,7 @@
 package TestesInicais;
 
 import algoritmos.ProgramacaoDinamica;
+import algoritmos.ProgramacaoDinamica.Solucao;
 import entity.Lance;
 
 import java.io.FileWriter;
@@ -26,27 +27,18 @@ public class TesteProgramacaoDinamica {
 
             for (int tamanho = tamanhoInicial; tamanho < T; tamanho += incremento) {
                 List<Long> duracoes = new ArrayList<>();
-                List<Lance> melhorSolucaoGeral = new ArrayList<>();
-                int maxLucroGeral = 0;
-                List<List<Lance>> todasSolucoes = new ArrayList<>();
+                List<Solucao> todasSolucoes = new ArrayList<>();
 
                 for (int teste = 0; teste < numTestes; teste++) {
                     List<Lance> lances = gerarLancesAleatorios(tamanho, energia, teste);
 
                     long inicioTempo = System.currentTimeMillis();
-                    int maiorLucro = ProgramacaoDinamica.resolver(lances, energia);
+                    Solucao solucao = ProgramacaoDinamica.getSolucao(lances, energia);
                     long fimTempo = System.currentTimeMillis();
 
                     long duracao = fimTempo - inicioTempo;
                     duracoes.add(duracao);
-
-                    List<Lance> solucaoAtual = ProgramacaoDinamica.getSolucao(lances, energia);
-                    todasSolucoes.add(solucaoAtual);
-
-                    if (maiorLucro > maxLucroGeral) {
-                        maxLucroGeral = maiorLucro;
-                        melhorSolucaoGeral = solucaoAtual;
-                    }
+                    todasSolucoes.add(solucao);
                 }
 
                 // Calcular a duração média para cada 10 execuções
@@ -56,14 +48,6 @@ public class TesteProgramacaoDinamica {
                 }
                 double duracaoMedia = duracaoTotal / (double) numTestes;
 
-                // Calcular a energia total e o valor da melhor solução geral
-                int energiaTotalMelhor = 0;
-                int valorTotalMelhor = 0;
-                for (Lance lance : melhorSolucaoGeral) {
-                    energiaTotalMelhor += lance.energia;
-                    valorTotalMelhor += lance.valor;
-                }
-
                 // Calcular a média dos valores e energias entre as 10 soluções
                 double[] medias = calcularMedias(todasSolucoes);
                 double mediaValorTotal = medias[0];
@@ -71,14 +55,12 @@ public class TesteProgramacaoDinamica {
 
                 System.out.println("Tamanho: " + tamanho);
                 System.out.println("Duração média: " + duracaoMedia + " ms");
-                System.out.println("Energia total da melhor solução: " + energiaTotalMelhor);
-                System.out.println("Valor total da melhor solução: " + valorTotalMelhor);
                 System.out.println("Média do valor total das soluções: " + mediaValorTotal);
                 System.out.println("Média da energia total das soluções: " + mediaEnergiaTotal);
                 System.out.println();
 
                 // Formatar a saída em CSV e escrever no arquivo
-                writer.append(String.format("%d %.2f %.2f %.2f\n",
+                writer.append(String.format("%d,%.2f,%.2f,%.2f\n",
                         tamanho, duracaoMedia, mediaValorTotal,
                         mediaEnergiaTotal));
 
@@ -90,29 +72,20 @@ public class TesteProgramacaoDinamica {
             }
 
             incremento = T;
-            for (int tamanho = T; tamanho <= (T*10); tamanho += incremento) {
+            for (int tamanho = T; tamanho <= (T * 10); tamanho += incremento) {
                 List<Long> duracoes = new ArrayList<>();
-                List<Lance> melhorSolucaoGeral = new ArrayList<>();
-                int maxLucroGeral = 0;
-                List<List<Lance>> todasSolucoes = new ArrayList<>();
+                List<Solucao> todasSolucoes = new ArrayList<>();
 
                 for (int teste = 0; teste < numTestes; teste++) {
                     List<Lance> lances = gerarLancesAleatorios(tamanho, energia, teste);
 
                     long inicioTempo = System.currentTimeMillis();
-                    int maiorLucro = ProgramacaoDinamica.resolver(lances, energia);
+                    Solucao solucao = ProgramacaoDinamica.getSolucao(lances, energia);
                     long fimTempo = System.currentTimeMillis();
 
                     long duracao = fimTempo - inicioTempo;
                     duracoes.add(duracao);
-
-                    List<Lance> solucaoAtual = ProgramacaoDinamica.getSolucao(lances, energia);
-                    todasSolucoes.add(solucaoAtual);
-
-                    if (maiorLucro > maxLucroGeral) {
-                        maxLucroGeral = maiorLucro;
-                        melhorSolucaoGeral = solucaoAtual;
-                    }
+                    todasSolucoes.add(solucao);
                 }
 
                 // Calcular a duração média para cada 10 execuções
@@ -122,14 +95,6 @@ public class TesteProgramacaoDinamica {
                 }
                 double duracaoMedia = duracaoTotal / (double) numTestes;
 
-                // Calcular a energia total e o valor da melhor solução geral
-                int energiaTotalMelhor = 0;
-                int valorTotalMelhor = 0;
-                for (Lance lance : melhorSolucaoGeral) {
-                    energiaTotalMelhor += lance.energia;
-                    valorTotalMelhor += lance.valor;
-                }
-
                 // Calcular a média dos valores e energias entre as 10 soluções
                 double[] medias = calcularMedias(todasSolucoes);
                 double mediaValorTotal = medias[0];
@@ -137,14 +102,12 @@ public class TesteProgramacaoDinamica {
 
                 System.out.println("Tamanho: " + tamanho);
                 System.out.println("Duração média: " + duracaoMedia + " ms");
-                System.out.println("Energia total da melhor solução: " + energiaTotalMelhor);
-                System.out.println("Valor total da melhor solução: " + valorTotalMelhor);
                 System.out.println("Média do valor total das soluções: " + mediaValorTotal);
                 System.out.println("Média da energia total das soluções: " + mediaEnergiaTotal);
                 System.out.println();
 
                 // Formatar a saída em CSV e escrever no arquivo
-                writer.append(String.format("%d %.2f %.2f %.2f\n",
+                writer.append(String.format("%d,%.2f,%.2f,%.2f\n",
                         tamanho, duracaoMedia, mediaValorTotal,
                         mediaEnergiaTotal));
 
@@ -155,22 +118,21 @@ public class TesteProgramacaoDinamica {
                 }
             }
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static double[] calcularMedias(List<List<Lance>> todasSolucoes) {
+    private static double[] calcularMedias(List<ProgramacaoDinamica.Solucao> todasSolucoes) {
         double somaValorTotal = 0;
         double somaEnergiaTotal = 0;
         int numSolucoes = todasSolucoes.size();
 
-        for (List<Lance> solucao : todasSolucoes) {
+        for (ProgramacaoDinamica.Solucao solucao : todasSolucoes) {
             int valorTotal = 0;
             int energiaTotal = 0;
 
-            for (Lance lance : solucao) {
+            for (Lance lance : solucao.lancesSelecionados) {
                 valorTotal += lance.valor;
                 energiaTotal += lance.energia;
             }
@@ -182,6 +144,6 @@ public class TesteProgramacaoDinamica {
         double mediaValorTotal = somaValorTotal / numSolucoes;
         double mediaEnergiaTotal = somaEnergiaTotal / numSolucoes;
 
-        return new double[] { mediaValorTotal, mediaEnergiaTotal };
+        return new double[]{mediaValorTotal, mediaEnergiaTotal};
     }
 }

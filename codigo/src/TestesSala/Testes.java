@@ -4,6 +4,7 @@ import algoritmos.BackTracking;
 import algoritmos.DivisaoConquista;
 import algoritmos.Guloso;
 import algoritmos.ProgramacaoDinamica;
+import algoritmos.ProgramacaoDinamica.Solucao;
 import entity.Lance;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class Testes {
     public static void main(String[] args) {
 
         int energiaInicial = 8000;
-        long tempoIncio;
+        long tempoInicio;
         long tempoFinal;
         long duracao;
         int valorTotal;
@@ -98,10 +99,10 @@ public class Testes {
                 case 1:
                     BackTracking solucaoBack = new BackTracking();
 
-                    tempoIncio = System.currentTimeMillis();
+                    tempoInicio = System.currentTimeMillis();
                     solucaoBack.resolver(lances, energiaInicial);
                     tempoFinal = System.currentTimeMillis();
-                    duracao = tempoFinal - tempoIncio;
+                    duracao = tempoFinal - tempoInicio;
 
                     System.out.println("Tempo de execução: " + duracao);
                     System.out.println("Melhor conjunto de lances para o maior lucro possível:");
@@ -112,12 +113,11 @@ public class Testes {
                     break;
                 case 2:
                     DivisaoConquista divisaoConquista = new DivisaoConquista();
-                    tempoIncio = System.currentTimeMillis();
 
-                    List<Lance> melhorConjunto = divisaoConquista.resolver (lances, energiaInicial);
-
+                    tempoInicio = System.currentTimeMillis();
+                    List<Lance> melhorConjunto = divisaoConquista.resolver(lances, energiaInicial);
                     tempoFinal = System.currentTimeMillis();
-                    duracao = tempoFinal - tempoIncio;
+                    duracao = tempoFinal - tempoInicio;
 
                     System.out.println("Tempo de execução: " + duracao);
                     System.out.println("Melhor conjunto de lances para o maior lucro possível:");
@@ -128,10 +128,10 @@ public class Testes {
                     System.out.println("Lucro total: " + divisaoConquista.calcularLucro(melhorConjunto));
                     break;
                 case 3:
-                    tempoIncio = System.currentTimeMillis();
+                    tempoInicio = System.currentTimeMillis();
                     List<Lance> solucao = Guloso.resolverPorEnergiaProValor(lances, energiaInicial);
                     tempoFinal = System.currentTimeMillis();
-                    duracao = tempoFinal - tempoIncio;
+                    duracao = tempoFinal - tempoInicio;
 
                     valorTotal = 0;
                     System.out.println();
@@ -144,10 +144,10 @@ public class Testes {
                     }
                     System.out.println("Lucro total: " + valorTotal);
 
-                    tempoIncio = System.currentTimeMillis();
+                    tempoInicio = System.currentTimeMillis();
                     List<Lance> solucao2 = Guloso.resolverPorMaiorValor(lances, energiaInicial);
                     tempoFinal = System.currentTimeMillis();
-                    duracao = tempoFinal - tempoIncio;
+                    duracao = tempoFinal - tempoInicio;
 
                     valorTotal = 0;
                     System.out.println();
@@ -162,16 +162,16 @@ public class Testes {
 
                     break;
                 case 4:
-                    tempoIncio = System.currentTimeMillis();
-                    List<Lance> solucao3 = ProgramacaoDinamica.getSolucao(lances, energiaInicial);
+                    tempoInicio = System.currentTimeMillis();
+                    Solucao solucao3 = ProgramacaoDinamica.getSolucao(lances, energiaInicial);
                     tempoFinal = System.currentTimeMillis();
-                    duracao = tempoFinal - tempoIncio;
+                    duracao = tempoFinal - tempoInicio;
 
                     valorTotal = 0;
                     System.out.println();
                     System.out.println("Tempo de execução: " + duracao);
                     System.out.println("Melhor conjunto de lances para o maior lucro possível:");
-                    for (Lance lance : solucao3) {
+                    for (Lance lance : solucao3.lancesSelecionados) {
                         System.out.println("Id: " + lance.id + ", Energia: " + lance.energia + ", Valor: " + lance.valor);
                         valorTotal += lance.valor;
                     }
