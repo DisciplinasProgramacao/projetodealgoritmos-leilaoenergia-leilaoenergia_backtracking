@@ -45,7 +45,7 @@ public class TesteBackTracking {
             for (long duracao : duracoes) {
                 duracaoTotal += duracao;
             }
-            double duracaoMedia = (duracaoTotal / (double) numTestes)*10;
+            double duracaoMedia = duracaoTotal / (double) numTestes;
 
             // Calcular a energia total e o valor da melhor solução geral
             int energiaTotalMelhor = 0;
