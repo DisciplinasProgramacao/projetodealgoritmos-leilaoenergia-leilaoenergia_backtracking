@@ -6,7 +6,8 @@ import java.util.Random;
 
 public class GeradorLances {
     
-    public static List<Lance> gerarLancesAleatorios(int quantidade, int energiaMax, Random random) {
+    public static List<Lance> gerarLancesAleatorios(int quantidade, int energiaMax, long seed) {
+        Random random = new Random(seed);
         List<Lance> lances = new ArrayList<>();
         for (int i = 0; i < quantidade; i++) {
             int energy = random.nextInt(energiaMax) + 1;
