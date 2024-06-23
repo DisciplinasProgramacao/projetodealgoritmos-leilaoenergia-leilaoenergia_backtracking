@@ -45,7 +45,7 @@ public class TesteBackTracking {
             for (long duracao : duracoes) {
                 duracaoTotal += duracao;
             }
-            double duracaoMedia = duracaoTotal / (double) numTestes;
+            double duracaoMedia = (duracaoTotal / (double) numTestes)*10;
 
             // Calcular a energia total e o valor da melhor solução geral
             int energiaTotalMelhor = 0;
@@ -59,7 +59,7 @@ public class TesteBackTracking {
             System.out.println("Duração média para tamanho " + tamanho + ": " + duracaoMedia + " ms");
 
             // Registrar a melhor solução geral encontrada
-            System.out.println("Melhor solução geral para tamanho " + tamanho + ": " + melhorSolucaoGeral);
+            // System.out.println("Melhor solução geral para tamanho " + tamanho + ": " + melhorSolucaoGeral);
             System.out.println("Valor total: " + valorTotalMelhor + ", Energia total: " + energiaTotalMelhor);
 
             // Verificar se a duração média excede o limite de tempo
