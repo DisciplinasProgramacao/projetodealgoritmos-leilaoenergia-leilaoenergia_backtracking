@@ -30,6 +30,6 @@ public class Lance {
 
     @Override
     public String toString() {
-        return "Bid{energia=" + energia + ", valor=" + valor + "}";
+        return "Lance{energia=" + energia + ", valor=" + valor + "}";
     }
 }
