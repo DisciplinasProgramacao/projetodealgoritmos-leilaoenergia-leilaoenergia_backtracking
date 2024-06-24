@@ -1,9 +1,7 @@
 package TestesInicais;
 
-import algoritmos.BackTracking;
 import algoritmos.DivisaoConquista;
 import entity.Lance;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;

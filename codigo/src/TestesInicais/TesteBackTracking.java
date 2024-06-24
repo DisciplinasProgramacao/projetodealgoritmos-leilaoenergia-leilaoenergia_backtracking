@@ -21,7 +21,7 @@ public class TesteBackTracking {
         int T = 130;
 
         try (FileWriter writer = new FileWriter("resultadosBackTracking.csv")) {
-            // Cabeçalho para os dados de saída
+
             writer.append("Tamanho DuraçãoMédia(ms) MédiaValorTotalSoluções MédiaEnergiaTotalSoluções\n");
 
             for (int tamanho = tamanhoInicial; tamanho <= 130 ; tamanho += incremento) {

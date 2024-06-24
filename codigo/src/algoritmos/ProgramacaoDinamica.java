@@ -43,22 +43,4 @@ public class ProgramacaoDinamica {
         return new Solucao(lucrosMax[energia], solucao);
     }
 
-    public static void main(String[] args) {
-        List<Lance> lances = new ArrayList<>();
-        lances.add(new Lance(500, 500));
-        lances.add(new Lance(500, 510));
-        lances.add(new Lance(400, 520));
-        lances.add(new Lance(300, 400));
-        lances.add(new Lance(200, 220));
-        lances.add(new Lance(900, 1110));
-
-        int energia = 1000;
-        Solucao solucao = getSolucao(lances, energia);
-
-        System.out.println("Maior lucro: " + solucao.maiorLucro);
-        System.out.println("Solução:");
-        for (Lance lance : solucao.lancesSelecionados) {
-            System.out.println(lance);
-        }
-    }
 }
